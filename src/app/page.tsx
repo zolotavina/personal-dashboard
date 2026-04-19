@@ -1,3 +1,5 @@
+import SectionCard from "@/components/SectionCard";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
@@ -10,30 +12,25 @@ export default function Home() {
         </header>
 
         <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Tasks</h2>
+          <SectionCard title="Tasks">
             <p className="text-sm text-gray-500">Task list goes here.</p>
-          </div>
+          </SectionCard>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Notes</h2>
+          <SectionCard title="Notes">
             <p className="text-sm text-gray-500">Notes section goes here.</p>
-          </div>
+          </SectionCard>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Habits</h2>
+          <SectionCard title="Habits">
             <p className="text-sm text-gray-500">Habits tracker goes here.</p>
-          </div>
+          </SectionCard>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Mood</h2>
+          <SectionCard title="Mood">
             <p className="text-sm text-gray-500">Mood tracker goes here.</p>
-          </div>
+          </SectionCard>
 
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Energy</h2>
+          <SectionCard title="Energy">
             <p className="text-sm text-gray-500">Energy tracker goes here.</p>
-          </div>
+          </SectionCard>
         </section>
       </div>
     </main>
