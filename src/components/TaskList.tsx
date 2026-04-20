@@ -40,6 +40,9 @@ export default function TaskList() {
           type="text"
           value={taskInput}
           onChange={(e) => setTaskInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") addTask();
+          }}
           placeholder="Add a task..."
           className="flex-1 rounded-lg border px-3 py-2 text-sm"
         />
