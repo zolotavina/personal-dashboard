@@ -55,8 +55,20 @@ export default function TaskList() {
       {isReady && (
         <ul className="space-y-2">
           {tasks.map((task, index) => (
-            <li key={index} className="rounded-lg border px-3 py-2 text-sm">
-              {task}
+            <li
+              key={index}
+              className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm"
+            >
+              <span>{task}</span>
+
+              <button
+                onClick={() =>
+                  setTasks(tasks.filter((_, taskIndex) => taskIndex !== index))
+                }
+                className="text-xs font-medium text-red-600"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
