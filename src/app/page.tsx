@@ -1,4 +1,5 @@
 import SectionCard from "@/components/SectionCard";
+import TaskList from "@/components/TaskList";
 
 export default function Home() {
   return (
@@ -34,9 +35,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <section className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
           <SectionCard title="Tasks">
-            <p className="text-sm text-gray-500">Task list goes here.</p>
+            <TaskList />
           </SectionCard>
 
           <SectionCard title="Notes">
