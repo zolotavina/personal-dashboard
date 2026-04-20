@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import SectionCard from "@/components/SectionCard";
+
+const NotesSection = dynamic(
+  () => import("@/components/planner/NotesSection"),
+  { ssr: false }
+);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-CA", {
@@ -14,6 +20,7 @@ function formatDate(date: Date) {
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const dateKey = selectedDate.toISOString().split("T")[0];
 
   function goToPreviousDay() {
     setSelectedDate((currentDate) => {
@@ -117,11 +124,7 @@ export default function Home() {
 
             <div className="lg:row-span-3">
               <SectionCard title="Notes">
-                <div className="h-full min-h-[20rem]">
-                  <p className="text-sm text-gray-500">
-                    Notes, ideas, reminders, and loose planning go here.
-                  </p>
-                </div>
+                <NotesSection key={dateKey} storageKey={`notes-${dateKey}`} />
               </SectionCard>
             </div>
           </div>
