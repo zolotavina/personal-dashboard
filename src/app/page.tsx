@@ -1,6 +1,36 @@
+"use client";
+
+import { useState } from "react";
 import SectionCard from "@/components/SectionCard";
 
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-CA", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default function Home() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  function goToPreviousDay() {
+    setSelectedDate((currentDate) => {
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() - 1);
+      return newDate;
+    });
+  }
+
+  function goToNextDay() {
+    setSelectedDate((currentDate) => {
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() + 1);
+      return newDate;
+    });
+  }
+
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
       <div className="mx-auto max-w-7xl p-6">
@@ -15,13 +45,21 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="rounded-lg border bg-white px-3 py-2 text-sm shadow-sm">
+            <button
+              onClick={goToPreviousDay}
+              className="rounded-lg border bg-white px-3 py-2 text-sm shadow-sm"
+            >
               Previous
             </button>
+
             <div className="rounded-lg border bg-white px-4 py-2 text-sm font-medium shadow-sm">
-              April 20, 2026
+              {formatDate(selectedDate)}
             </div>
-            <button className="rounded-lg border bg-white px-3 py-2 text-sm shadow-sm">
+
+            <button
+              onClick={goToNextDay}
+              className="rounded-lg border bg-white px-3 py-2 text-sm shadow-sm"
+            >
               Next
             </button>
           </div>
