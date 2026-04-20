@@ -6,7 +6,12 @@ import SectionCard from "@/components/SectionCard";
 
 const NotesSection = dynamic(
   () => import("@/components/planner/NotesSection"),
-  { ssr: false }
+  { ssr: false },
+);
+
+const FocusSection = dynamic(
+  () => import("@/components/planner/FocusSection"),
+  { ssr: false },
 );
 
 function formatDate(date: Date) {
@@ -86,9 +91,7 @@ export default function Home() {
 
         <section className="mb-6">
           <SectionCard title="Focus of the day">
-            <p className="text-sm text-gray-500">
-              What is the one most important thing for today?
-            </p>
+            <FocusSection key={dateKey} storageKey={`focus-${dateKey}`} />
           </SectionCard>
         </section>
 
