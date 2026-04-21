@@ -14,6 +14,11 @@ const FocusSection = dynamic(
   { ssr: false },
 );
 
+const DailyTextInput = dynamic(
+  () => import("@/components/planner/DailyTextInput"),
+  { ssr: false },
+);
+
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-CA", {
     weekday: "long",
@@ -78,14 +83,20 @@ export default function Home() {
         </header>
 
         <section className="mb-6 grid gap-6 md:grid-cols-2">
-          <SectionCard title="I’m grateful for">
-            <p className="text-sm text-gray-500">Add gratitude here.</p>
+          <SectionCard title="I’m grateful for...">
+            <DailyTextInput
+              key={`grateful-${dateKey}`}
+              storageKey={`grateful-${dateKey}`}
+              placeholder="Add gratitude here."
+            />
           </SectionCard>
 
-          <SectionCard title="I’m looking forward to">
-            <p className="text-sm text-gray-500">
-              Add what you’re looking forward to here.
-            </p>
+          <SectionCard title="I’m looking forward to...">
+            <DailyTextInput
+              key={`forward-${dateKey}`}
+              storageKey={`forward-${dateKey}`}
+              placeholder="Add what you’re looking forward to here."
+            />
           </SectionCard>
         </section>
 
