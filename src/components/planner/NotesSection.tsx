@@ -28,7 +28,7 @@ export default function NotesSection({
       onChange={(e) => setNotes(e.target.value)}
       placeholder={placeholder}
       style={{ minHeight }}
-      className="w-full resize-none bg-transparent text-sm outline-none"
+      className="h-full w-full resize-none bg-transparent text-sm outline-none"
     />
   );
 }

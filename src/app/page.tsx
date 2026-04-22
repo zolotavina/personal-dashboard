@@ -19,6 +19,11 @@ const DailyTextInput = dynamic(
   { ssr: false },
 );
 
+const PriorityList = dynamic(
+  () => import("@/components/planner/PriorityList"),
+  { ssr: false },
+);
+
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-CA", {
     weekday: "long",
@@ -109,9 +114,10 @@ export default function Home() {
         <section className="mb-6 grid gap-6 lg:grid-cols-2">
           <div className="grid gap-6">
             <SectionCard title="Priority list">
-              <p className="text-sm text-gray-500">
-                Only two tasks allowed here.
-              </p>
+              <PriorityList
+                key={`priorities-${dateKey}`}
+                storageKey={`priorities-${dateKey}`}
+              />
             </SectionCard>
 
             <SectionCard title="Other tasks">
@@ -137,7 +143,7 @@ export default function Home() {
             </SectionCard>
 
             <div className="lg:row-span-3">
-              <SectionCard title="Notes">
+              <SectionCard title="Notes" className="h-full">
                 <NotesSection key={dateKey} storageKey={`notes-${dateKey}`} />
               </SectionCard>
             </div>
