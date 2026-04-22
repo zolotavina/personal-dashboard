@@ -24,6 +24,10 @@ const PriorityList = dynamic(
   { ssr: false },
 );
 
+const OtherTasks = dynamic(() => import("@/components/planner/OtherTasks"), {
+  ssr: false,
+});
+
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-CA", {
     weekday: "long",
@@ -111,8 +115,8 @@ export default function Home() {
           </SectionCard>
         </section>
 
-        <section className="mb-6 grid gap-6 lg:grid-cols-2">
-          <div className="grid gap-6">
+        <section className="mb-6 grid items-stretch gap-6 lg:grid-cols-2">
+          <div className="flex h-full flex-col gap-6">
             <SectionCard title="Priority list">
               <PriorityList
                 key={`priorities-${dateKey}`}
@@ -121,7 +125,10 @@ export default function Home() {
             </SectionCard>
 
             <SectionCard title="Other tasks">
-              <p className="text-sm text-gray-500">Additional tasks go here.</p>
+              <OtherTasks
+                key={`other-tasks-${dateKey}`}
+                storageKey={`other-tasks-${dateKey}`}
+              />
             </SectionCard>
 
             <SectionCard title="Habits checklist">
@@ -135,26 +142,30 @@ export default function Home() {
             </SectionCard>
           </div>
 
-          <div className="grid gap-6 lg:grid-rows-[repeat(4,minmax(0,1fr))]">
+          <div className="flex h-full flex-col gap-6">
+            <div className="rounded-2xl border bg-white px-6 py-5 text-center shadow-sm">
+              <p className="text-sm italic text-gray-600">
+                “A calm day starts with a clear plan.”
+              </p>
+            </div>
+
             <SectionCard title="Appointments">
               <p className="text-sm text-gray-500">
                 Scheduled events and time-based plans go here.
               </p>
             </SectionCard>
 
-            <div className="lg:row-span-3">
-              <SectionCard title="Notes" className="h-full">
-                <NotesSection key={dateKey} storageKey={`notes-${dateKey}`} />
-              </SectionCard>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-6">
-          <div className="rounded-2xl border bg-white px-6 py-5 text-center shadow-sm">
-            <p className="text-sm italic text-gray-600">
-              “A calm day starts with a clear plan.”
-            </p>
+            <SectionCard
+              title="Notes"
+              className="flex min-h-0 flex-1 flex-col"
+              contentClassName="min-h-0 flex-1"
+            >
+              <NotesSection
+                key={dateKey}
+                storageKey={`notes-${dateKey}`}
+                minHeight="0"
+              />
+            </SectionCard>
           </div>
         </section>
 
