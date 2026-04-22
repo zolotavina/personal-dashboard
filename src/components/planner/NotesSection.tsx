@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 
 type NotesSectionProps = {
   storageKey: string;
+  minHeight?: string;
+  placeholder?: string;
 };
 
-export default function NotesSection({ storageKey }: NotesSectionProps) {
+export default function NotesSection({
+  storageKey,
+  minHeight = "18rem",
+  placeholder = "Write notes, reminders, ideas...",
+}: NotesSectionProps) {
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem(storageKey);
     return savedNotes || "";
@@ -20,8 +26,9 @@ export default function NotesSection({ storageKey }: NotesSectionProps) {
     <textarea
       value={notes}
       onChange={(e) => setNotes(e.target.value)}
-      placeholder="Write notes, reminders, ideas..."
-      className="min-h-[18rem] w-full resize-none bg-transparent text-sm outline-none"
+      placeholder={placeholder}
+      style={{ minHeight }}
+      className="w-full resize-none bg-transparent text-sm outline-none"
     />
   );
 }

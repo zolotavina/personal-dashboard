@@ -154,11 +154,12 @@ export default function Home() {
 
         <section>
           <SectionCard title="Thoughts, ideas & wins of the day">
-            <div className="min-h-[10rem]">
-              <p className="text-sm text-gray-500">
-                Evening reflection will go here.
-              </p>
-            </div>
+            <NotesSection
+              key={`reflection-${dateKey}`}
+              storageKey={`reflection-${dateKey}`}
+              minHeight="8rem"
+              placeholder="Wins, lessons, thoughts, ideas..."
+            />
           </SectionCard>
         </section>
       </div>
