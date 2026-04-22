@@ -28,6 +28,11 @@ const OtherTasks = dynamic(() => import("@/components/planner/OtherTasks"), {
   ssr: false,
 });
 
+const HabitsChecklist = dynamic(
+  () => import("@/components/planner/HabitsChecklist"),
+  { ssr: false },
+);
+
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-CA", {
     weekday: "long",
@@ -62,12 +67,7 @@ export default function Home() {
       <div className="mx-auto max-w-7xl p-6">
         <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">
-              Personal Dashboard
-            </h1>
-            <p className="mt-2 text-sm text-gray-600">
-              A space to plan your day with intention.
-            </p>
+            <h1 className="text-3xl font-bold tracking-tight">Daily Planner</h1>
           </div>
 
           <div className="flex items-center gap-2">
@@ -132,7 +132,10 @@ export default function Home() {
             </SectionCard>
 
             <SectionCard title="Habits checklist">
-              <p className="text-sm text-gray-500">Habits will go here.</p>
+              <HabitsChecklist
+                key={`habits-${dateKey}`}
+                storageKey={`habits-${dateKey}`}
+              />
             </SectionCard>
 
             <SectionCard title="To relax">
